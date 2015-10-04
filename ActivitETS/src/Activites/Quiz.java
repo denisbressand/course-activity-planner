@@ -3,6 +3,7 @@ package Activites;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Quiz {
@@ -11,9 +12,10 @@ public class Quiz {
 	private int id;
 	private String nom;
 	private String resume;
-	private Date dateStart, dateStop;
+	private Calendar dateStart = Calendar.getInstance();
+	private Calendar dateStop = Calendar.getInstance();
 	
-	public Quiz(int id, String nom, String resume, Date dateStart, Date dateStop) {
+	public Quiz(int id, String nom, String resume, Calendar dateStart, Calendar dateStop) {
 		id =id;
 		nom = nom;
 		resume = resume;
@@ -48,23 +50,25 @@ public class Quiz {
 		this.resume = resume;
 	}
 
-	public Date getDateStart() {
+	public Calendar getDateStart() {
 		return dateStart;
 	}
 
-	public void setDateStart(String date) {
+	public void setDateStart(long date) {
 		
-		dateStart = new java.util.Date((long)Integer.parseInt(date)*1000);
+	    dateStart.setTimeInMillis(date * 1000);
 		
 	}
 
-	public Date getDateStop() {
+	public Calendar getDateStop() {
 		return dateStop;
 	}
 
-	public void setDateStop(String date) {
+	public void setDateStop(long date) {
 		
-		dateStop = new java.util.Date((long)Integer.parseInt(date)*1000);
+		dateStop.setTimeInMillis(date * 1000);
+		
+		
 	}
 	
 	public String toString() {

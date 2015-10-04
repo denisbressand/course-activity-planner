@@ -142,11 +142,11 @@ public class XMLParser extends DefaultHandler {
 			break;
 		}
 		case "timeopen": {
-			quiz.setDateStart(text);
+			quiz.setDateStart(Long.valueOf(text));
 			break;
 		}
 		case "timeclose": {
-			quiz.setDateStop(text);
+			quiz.setDateStop(Long.valueOf(text));
 			break;
 		}
 		}
