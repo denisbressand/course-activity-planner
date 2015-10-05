@@ -1,29 +1,35 @@
 package modele;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import Activites.Quiz;
-import Utils.LireFichier;
+import Utils.OperationsFichiers;
 
 public class Modele {
 
-	private long dateStart, dateStop;
+	private LocalDateTime dateStart, dateStop;
+	private String quizName, quizResume;
 	public Quiz quiz = new Quiz();
+	OperationsFichiers operationsFics = new OperationsFichiers();
 	
-	public ArrayList<Calendar> recupererDates(String path) {
+	public ArrayList<LocalDateTime> recupererDates(String path) {
 		
-		ArrayList<Calendar> listeDates = new ArrayList<Calendar>();
+		ArrayList<LocalDateTime> listeDates = new ArrayList<LocalDateTime>();
 		
-		LireFichier lireFic = new LireFichier();
-		lireFic.lireFic(path);
 		
-		dateStart = lireFic.getDateStart();
-		dateStop = lireFic.getDateStop();
+		operationsFics.lireFic(path);
+		
+		dateStart = operationsFics.getDateOpen();
+		dateStop = operationsFics.getDateClose();
+
 		
 		quiz.setDateStart(dateStart);
 		quiz.setDateStop(dateStop);
+		
+		System.out.println(quiz.getDateStart().toString());
 		
 		listeDates.add(quiz.getDateStart());
 		listeDates.add(quiz.getDateStop());
@@ -31,6 +37,20 @@ public class Modele {
 		return listeDates;
 	}
 	
+	public Quiz recupererInfos() {
+		
+		quizName = operationsFics.getQuizName();
+		quizResume = operationsFics.getQuizResume();
+		
+		quiz.setNom(quizName);
+		quiz.setResume(quizResume);
+		
+		return quiz;
+	}
 	
+	public void createNewXML(ArrayList<LocalDateTime> listesNewDates, String pathNewFile) {
+		
+		operationsFics.ecrireFichier(listesNewDates, pathNewFile);
+	}
 	
 }

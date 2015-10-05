@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<activity id="1772" moduleid="65578" modulename="quiz" contextid="98025">
+  <quiz id="1772">
+    <name>Quiz à passer avant de commencer la Proposition</name>
+    <intro>&lt;p&gt;Ce mini-test vise à valider votre compréhension de ce qui est censé être dans la proposition de projet fin d'études.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Il vaut mieux lire &lt;a href="https://sites.google.com/site/log792gti792/deroulement/proposition-de-projet"&gt;les directives pour la proposition&lt;/a&gt; avant de commencer ce mini-test.&lt;/p&gt;</intro>
+    <introformat>1</introformat>
+    <timeopen>1443711000</timeopen>
+    <timeclose>1444575600</timeclose>
+    <timelimit>0</timelimit>
+    <overduehandling>autosubmit</overduehandling>
+    <graceperiod>0</graceperiod>
+    <preferredbehaviour>immediatefeedback</preferredbehaviour>
+    <canredoquestions>0</canredoquestions>
+    <attempts_number>0</attempts_number>
+    <attemptonlast>0</attemptonlast>
+    <grademethod>1</grademethod>
+    <decimalpoints>2</decimalpoints>
+    <questiondecimalpoints>-1</questiondecimalpoints>
+    <reviewattempt>65536</reviewattempt>
+    <reviewcorrectness>65536</reviewcorrectness>
+    <reviewmarks>69904</reviewmarks>
+    <reviewspecificfeedback>65536</reviewspecificfeedback>
+    <reviewgeneralfeedback>0</reviewgeneralfeedback>
+    <reviewrightanswer>0</reviewrightanswer>
+    <reviewoverallfeedback>0</reviewoverallfeedback>
+    <questionsperpage>1</questionsperpage>
+    <navmethod>free</navmethod>
+    <shuffleanswers>1</shuffleanswers>
+    <sumgrades>16.00000</sumgrades>
+    <grade>16.00000</grade>
+    <timecreated>0</timecreated>
+    <timemodified>1443711062</timemodified>
+    <password></password>
+    <subnet></subnet>
+    <browsersecurity>-</browsersecurity>
+    <delay1>0</delay1>
+    <delay2>0</delay2>
+    <showuserpicture>0</showuserpicture>
+    <showblocks>0</showblocks>
+    <completionattemptsexhausted>0</completionattemptsexhausted>
+    <completionpass>0</completionpass>
+    <question_instances>
+      <question_instance id="14826">
+        <slot>1</slot>
+        <page>1</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21860</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14827">
+        <slot>2</slot>
+        <page>2</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21944</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14828">
+        <slot>3</slot>
+        <page>3</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21989</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14829">
+        <slot>4</slot>
+        <page>4</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21945</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14830">
+        <slot>5</slot>
+        <page>5</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21946</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14831">
+        <slot>6</slot>
+        <page>6</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21947</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14832">
+        <slot>7</slot>
+        <page>7</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21948</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14833">
+        <slot>8</slot>
+        <page>8</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21949</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="14834">
+        <slot>9</slot>
+        <page>9</page>
+        <requireprevious>0</requireprevious>
+        <questionid>21950</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15030">
+        <slot>10</slot>
+        <page>10</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34730</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15031">
+        <slot>11</slot>
+        <page>11</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34731</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15032">
+        <slot>12</slot>
+        <page>12</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34732</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15033">
+        <slot>13</slot>
+        <page>13</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34733</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15034">
+        <slot>14</slot>
+        <page>14</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34734</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15035">
+        <slot>15</slot>
+        <page>15</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34735</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+      <question_instance id="15036">
+        <slot>16</slot>
+        <page>16</page>
+        <requireprevious>0</requireprevious>
+        <questionid>34736</questionid>
+        <maxmark>1.0000000</maxmark>
+      </question_instance>
+    </question_instances>
+    <sections>
+      <section id="1192">
+        <firstslot>1</firstslot>
+        <heading></heading>
+        <shufflequestions>0</shufflequestions>
+      </section>
+    </sections>
+    <feedbacks>
+      <feedback id="11840">
+        <feedbacktext></feedbacktext>
+        <feedbacktextformat>1</feedbacktextformat>
+        <mingrade>0.00000</mingrade>
+        <maxgrade>17.00000</maxgrade>
+      </feedback>
+    </feedbacks>
+    <overrides>
+    </overrides>
+    <grades>
+    </grades>
+    <attempts>
+    </attempts>
+  </quiz>
+</activity>

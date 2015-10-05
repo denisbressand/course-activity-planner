@@ -6,14 +6,24 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import Activites.Quiz;
 import Utils.DateLabelFormatter;
-import Utils.LireFichier;
+import Utils.OperationsFichiers;
+import Utils.SpinnerTemporalEditor;
+import Utils.SpinnerTemporalModel;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,48 +31,62 @@ import java.util.Properties;
 
 public class Gui extends JFrame {
 
-	JButton btnFileChooser; 
+	JButton btnFileChooser, btnGenerateNewFic; 
 	JTextField status = new JTextField("Pas de fichier chargé!");
-	JLabel lblDateStart, lblDateStop;
-	GridLayout gridLayout = new GridLayout(4,2);
+	JLabel lblTitleName, lblTitleResume, lblTitleDateStart, lblTitleDateStop, lblDateStart, lblDateStop, quizName, quizResume;
+	GridLayout gridLayout = new GridLayout(7,2);
 	UtilDateModel modelOpen, modelClose;
 	JDatePickerImpl datePickerOpen, datePickerClose;
 	JSpinner timeSpinnerOpen, timeSpinnerClose;
+	ArrayList<LocalDateTime> newDates;
+	LocalDateTime dateOpen, dateClose;
+	SpinnerTemporalModel spinnerTempOpen, spinnerTempClose;
 	
 	
-
 	public Gui() {
 
-		super("titre de l'application");
+		
+		super("ActivitETS");
 
-		btnFileChooser = new JButton("Charger fichier XML");
+		btnFileChooser = new JButton("Importer fichier XML");
+		btnGenerateNewFic = new JButton("Exporter le nouveau fichier XML");
 		lblDateStart = new JLabel();
 		lblDateStop = new JLabel();
-		timeSpinnerOpen = new JSpinner( new SpinnerDateModel() );
+		lblTitleName = new JLabel("Nom du quiz :");
+		lblTitleResume = new JLabel("Résumé du quiz :");
+		lblTitleDateStart = new JLabel("Date de debut :");
+		lblTitleDateStop = new JLabel("Date de fin :");
 		
-		modelOpen = new UtilDateModel();
 		Properties p = new Properties();
 		p.put("text.today", "Today");
 		p.put("text.month", "Month");
 		p.put("text.year", "Year");
+
+		//Modele pour la date d'ouverture
+		modelOpen = new UtilDateModel();
 		JDatePanelImpl datePanelOpen = new JDatePanelImpl(modelOpen, p);
 		datePickerOpen = new JDatePickerImpl(datePanelOpen, new DateLabelFormatter());
 		
+		//Modele pour la date de fermeture
 		modelClose = new UtilDateModel();
 		JDatePanelImpl datePanelClose = new JDatePanelImpl(modelClose, p);
-		datePickerClose = new JDatePickerImpl(datePanelClose, new DateLabelFormatter());
+		datePickerClose = new JDatePickerImpl(datePanelClose, new DateLabelFormatter());	
+
+		//Modele pour l'heure d'ouveture
+		spinnerTempOpen = new SpinnerTemporalModel(LocalTime.now(), LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59), ChronoUnit.SECONDS);
+		timeSpinnerOpen = new JSpinner(spinnerTempOpen);
+		timeSpinnerOpen.setEditor(new SpinnerTemporalEditor(timeSpinnerOpen, DateTimeFormatter.ofPattern("HH:mm:ss")));
+			
+		//Modele pour l'heure de fermeture
+		spinnerTempClose = new SpinnerTemporalModel(LocalTime.now(), LocalTime.of(0, 0, 0), LocalTime.of(23, 59, 59), ChronoUnit.SECONDS);
+		timeSpinnerClose = new JSpinner(spinnerTempClose);
+		timeSpinnerClose.setEditor(new SpinnerTemporalEditor(timeSpinnerClose, DateTimeFormatter.ofPattern("HH:mm:ss")));
 		
-		JSpinner.DateEditor timeEditorOpen = new JSpinner.DateEditor(timeSpinnerOpen, "HH:mm:ss");
-		timeSpinnerOpen.setEditor(timeEditorOpen);
-		timeSpinnerOpen.setValue(new Date());
-		
-		timeSpinnerClose = new JSpinner( new SpinnerDateModel() );
-		JSpinner.DateEditor timeEditorClose = new JSpinner.DateEditor(timeSpinnerClose, "HH:mm:ss");
-		timeSpinnerClose.setEditor(timeEditorClose);
-		timeSpinnerClose.setValue(new Date());
+		quizName = new JLabel();
+		quizResume = new JLabel();
 		
 		this.setTitle("ActivitETS");
-		this.setSize(400, 250);
+		this.setSize(700, 250);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -72,27 +96,26 @@ public class Gui extends JFrame {
 		panneau.setLayout(gridLayout);
 		panneau.add(btnFileChooser);
 		panneau.add(status);
+		panneau.add(lblTitleName);
+		panneau.add(lblTitleResume);
+		panneau.add(quizName);
+		panneau.add(quizResume);
+		panneau.add(lblTitleDateStart);
+		panneau.add(lblTitleDateStop);
 		panneau.add(datePickerOpen);
 		panneau.add(datePickerClose);
-		panneau.add(lblDateStart);
-		panneau.add(lblDateStop);
 		panneau.add(timeSpinnerOpen);
 		panneau.add(timeSpinnerClose);
+		panneau.add(btnGenerateNewFic);
 		
 		this.setContentPane(panneau);
 
 	}
 
 	public String choixFic() {
-		JFileChooser chooser = new JFileChooser(
-				new File(
-						"D:\\TravailCours\\ETS\\PFE\\QuizzMoodle\\activities\\quiz_65578"));// création
-																							// dun
-																							// nouveau
-																							// filechosser
-		chooser.setApproveButtonText("Choix du fichier..."); // intitulé du
-																// bouton
-		chooser.showOpenDialog(null); // affiche la boite de dialogue
+		JFileChooser chooser = new JFileChooser(new File("QuizzMoodle\\activities\\quiz_65578"));
+		chooser.setApproveButtonText("Choix du fichier...");
+		//chooser.showOpenDialog(null); // affiche la boite de dialogue
 		String path = "";
 		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 			path = chooser.getSelectedFile().getAbsolutePath();
@@ -102,31 +125,90 @@ public class Gui extends JFrame {
 		return path;
 	}
 
-	public JButton getButton() {
+	public JButton getBtnFic() {
 		return btnFileChooser;
 	}
-
-	public void afficherDates(ArrayList<Calendar> dates) {
-
-		//dates.get(0).getD
+	
+	public JButton getBtnCreateFic() {
+		return btnGenerateNewFic;
+	}
+	
+	public ArrayList<LocalDateTime> getNewDates() {
 		
-		int yearOpen = datePickerOpen.getModel().getYear();
-		int monthOpen = datePickerOpen.getModel().getMonth();
-		int dayOpen = datePickerOpen.getModel().getDay();
-		
-		int yearClose = datePickerOpen.getModel().getYear();
-		int monthClose = datePickerOpen.getModel().getMonth();
-		int dayClose = datePickerOpen.getModel().getDay();
+		newDates = new ArrayList<LocalDateTime>();
 
+		
+		int yearOpen = modelOpen.getYear();
+		int monthOpen = modelOpen.getMonth();
+		int dayOpen = modelOpen.getDay();
+		int hourOpen = Integer.valueOf(spinnerTempOpen.getTemporalValue().toString().split(":")[0]);
+		int minuteOpen = Integer.valueOf(spinnerTempOpen.getTemporalValue().toString().split(":")[1]);
+		int secondOpen = 0;
+		if(spinnerTempOpen.getTemporalValue().toString().split(":").length > 2 ) {
+			secondOpen = Integer.valueOf(spinnerTempOpen.getTemporalValue().toString().split(":")[2]);
+		}
+		
+		int yearClose = modelClose.getYear();
+		int monthClose = modelClose.getMonth();
+		int dayClose = modelClose.getDay();
+		int hourClose = Integer.valueOf(spinnerTempClose.getTemporalValue().toString().split(":")[0]);
+		int minuteClose = Integer.valueOf(spinnerTempClose.getTemporalValue().toString().split(":")[1]);
+		int secondClose = 0;
+		if(spinnerTempClose.getTemporalValue().toString().split(":").length > 2 ) {
+			secondClose = Integer.valueOf(spinnerTempClose.getTemporalValue().toString().split(":")[2]);
+		}
+		
+			
+		dateOpen = LocalDateTime.of(yearOpen, monthOpen, dayOpen, hourOpen, minuteOpen, secondOpen);
+		dateClose = LocalDateTime.of(yearClose, monthClose, dayClose, hourClose, minuteClose, secondClose);
+		
+		System.out.println("Date et heure open: " + dateOpen);
+		System.out.println("Date et heure close: " + dateClose);
+		
+		newDates.add(dateOpen);
+		newDates.add(dateClose);
+		return newDates;
+	}
+	
+
+	public void afficherDates(ArrayList<LocalDateTime> dates) {
+
+		
+		int yearOpen = dates.get(0).getYear();
+		int monthOpen = dates.get(0).getMonthValue();
+		int dayOpen = dates.get(0).getDayOfMonth();
+		int hourOpen = dates.get(0).getHour();
+		int minuteOpen = dates.get(0).getMinute();
+		int secondOpen = dates.get(0).getSecond();
+		
+		int yearClose = dates.get(1).getYear();
+		int monthClose = dates.get(1).getMonthValue();
+		int dayClose = dates.get(1).getDayOfMonth();
+		int hourClose = dates.get(1).getHour();
+		int minuteClose = dates.get(1).getMinute();
+		int secondClose = dates.get(1).getSecond();
 		
 		modelOpen.setDate(yearOpen, monthOpen, dayOpen);
 		modelClose.setDate(yearClose, monthClose, dayClose);
 		modelOpen.setSelected(true);
 		modelClose.setSelected(true);
 		
-		lblDateStart.setText(dates.get(0).getTime().toString());
-		lblDateStop.setText(dates.get(1).getTime().toString());
+		timeSpinnerOpen.setValue(LocalTime.of(hourOpen, minuteOpen, secondOpen));
+		timeSpinnerClose.setValue(LocalTime.of(hourClose, minuteClose, secondClose));
+		
+		lblDateStart.setText(dates.get(0).toString());
+		lblDateStop.setText(dates.get(1).toString());
 
 	}
+	
+	public void afficherInfos(Quiz quiz) {
+		quizName.setText(quiz.getNom());
+		quizResume.setText(quiz.getResume());
+	}
+	
+	public void afficherEreurFichier() {
+		JOptionPane.showMessageDialog(this, "Mauvais fichier");
+	}
+	
 
 }

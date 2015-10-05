@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+  <event id="34721">
+    <name>Quiz à passer avant de commencer la Proposition (Le test est rendu disponible)</name>
+    <description>&lt;div class="no-overflow"&gt;&lt;p&gt;Ce mini-test vise à valider votre compréhension de ce qui est censé être dans la proposition de projet fin d'études.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Il vaut mieux lire &lt;a href="https://sites.google.com/site/log792gti792/deroulement/proposition-de-projet"&gt;les directives pour la proposition&lt;/a&gt; avant de commencer ce mini-test.&lt;/p&gt;&lt;/div&gt;</description>
+    <format>1</format>
+    <courseid>1677</courseid>
+    <groupid>0</groupid>
+    <userid>1165</userid>
+    <repeatid>0</repeatid>
+    <modulename>quiz</modulename>
+    <instance>1772</instance>
+    <eventtype>open</eventtype>
+    <timestart>1443711000</timestart>
+    <timeduration>0</timeduration>
+    <visible>1</visible>
+    <uuid></uuid>
+    <sequence>1</sequence>
+    <timemodified>1443711062</timemodified>
+  </event>
+  <event id="34722">
+    <name>Quiz à passer avant de commencer la Proposition (Le test ferme)</name>
+    <description>&lt;div class="no-overflow"&gt;&lt;p&gt;Ce mini-test vise à valider votre compréhension de ce qui est censé être dans la proposition de projet fin d'études.&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Il vaut mieux lire &lt;a href="https://sites.google.com/site/log792gti792/deroulement/proposition-de-projet"&gt;les directives pour la proposition&lt;/a&gt; avant de commencer ce mini-test.&lt;/p&gt;&lt;/div&gt;</description>
+    <format>1</format>
+    <courseid>1677</courseid>
+    <groupid>0</groupid>
+    <userid>1165</userid>
+    <repeatid>0</repeatid>
+    <modulename>quiz</modulename>
+    <instance>1772</instance>
+    <eventtype>close</eventtype>
+    <timestart>1444575600</timestart>
+    <timeduration>0</timeduration>
+    <visible>1</visible>
+    <uuid></uuid>
+    <sequence>1</sequence>
+    <timemodified>1443711063</timemodified>
+  </event>
+</events>

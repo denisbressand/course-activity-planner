@@ -2,15 +2,14 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.JFrame;
-import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Activites.Quiz;
 import gui.Gui;
 import modele.Modele;
 
@@ -27,12 +26,20 @@ public class Controleur {
 
 	}
 
-	public void contol() {
+	public void control() {
 		actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
-				String path = ((Gui) vue).choixFic();
-				ouvrirFic(path);
+				if(actionEvent.getSource() == ((Gui) vue).getBtnFic()) {
+					String path = ((Gui) vue).choixFic();
+					ouvrirFic(path);
+					afficherInfos();
+				} else if(actionEvent.getSource() == ((Gui) vue).getBtnCreateFic()) {
+					String pathNewFile = "QuizzMoodle\\activities\\quizTest.xml";
+					ArrayList<LocalDateTime> listesNewDates = ((Gui) vue).getNewDates();
+					generateNewFile(listesNewDates, pathNewFile);
+				}
+				
 			}
 
 		};
@@ -42,17 +49,40 @@ public class Controleur {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				//statusLabel.setText("Value : " + ((JSpinner) e.getSource()).getValue());
-
+				System.out.println("Changement de date");
 			}
 		};
 
-		((Gui) vue).getButton().addActionListener(actionListener);
+		((Gui) vue).getBtnFic().addActionListener(actionListener);
+		((Gui) vue).getBtnCreateFic().addActionListener(actionListener);
 	}
 
 	private void ouvrirFic(String path) {
-		ArrayList<Calendar> listeDates = modele.recupererDates(path);
+		if(path.contains("quiz.xml")) {
+			ArrayList<LocalDateTime> listeDates = modele.recupererDates(path);
 
-		((Gui) vue).afficherDates(listeDates);
+			((Gui) vue).afficherDates(listeDates);
+		} else {
+			((Gui) vue).afficherEreurFichier();
+		}
+
 		
 	}
+	
+	private void afficherInfos() {
+		
+		Quiz quiz = modele.recupererInfos();
+		((Gui) vue).afficherInfos(quiz);
+	}
+	
+	private void generateNewFile(ArrayList<LocalDateTime> listesNewDates, String pathNewFile) {
+		
+		for(int i = 0; i < listesNewDates.size(); ++i) {
+			System.out.println("Date : " + listesNewDates.get(i).toString() + " //timestamp : " + listesNewDates.get(i));
+		}
+		
+		modele.createNewXML(listesNewDates, pathNewFile);
+	}
+	
+	
 }

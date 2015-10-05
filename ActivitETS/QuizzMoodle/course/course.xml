@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<course id="1677" contextid="97938">
+  <shortname>S20143-LOG792-09</shortname>
+  <fullname>LOG792-09 Projet de fin d'études en génie logiciel (A2014)</fullname>
+  <idnumber>S20143-LOG792-09</idnumber>
+  <summary>&lt;p&gt;PFE pour les étudiants du professeur Christopher Fuhrman&lt;/p&gt;</summary>
+  <summaryformat>1</summaryformat>
+  <format>topics</format>
+  <showgrades>1</showgrades>
+  <newsitems>1</newsitems>
+  <startdate>1409889600</startdate>
+  <marker>0</marker>
+  <maxbytes>104857600</maxbytes>
+  <legacyfiles>0</legacyfiles>
+  <showreports>0</showreports>
+  <visible>1</visible>
+  <groupmode>0</groupmode>
+  <groupmodeforce>0</groupmodeforce>
+  <defaultgroupingid>0</defaultgroupingid>
+  <lang></lang>
+  <theme></theme>
+  <timecreated>1409949701</timecreated>
+  <timemodified>1410631749</timemodified>
+  <requested>0</requested>
+  <enablecompletion>0</enablecompletion>
+  <completionnotify>0</completionnotify>
+  <numsections>0</numsections>
+  <hiddensections>1</hiddensections>
+  <coursedisplay>0</coursedisplay>
+  <category id="18">
+    <name>Automne 2014</name>
+    <description></description>
+  </category>
+  <tags>
+  </tags>
+</course>

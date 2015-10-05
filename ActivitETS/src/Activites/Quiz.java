@@ -3,8 +3,10 @@ package Activites;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Quiz {
 
@@ -12,8 +14,9 @@ public class Quiz {
 	private int id;
 	private String nom;
 	private String resume;
-	private Calendar dateStart = Calendar.getInstance();
-	private Calendar dateStop = Calendar.getInstance();
+	private LocalDateTime dateOpen;
+	private LocalDateTime dateClose;
+	TimeZone timeZone = TimeZone.getDefault();
 	
 	public Quiz(int id, String nom, String resume, Calendar dateStart, Calendar dateStop) {
 		id =id;
@@ -50,30 +53,27 @@ public class Quiz {
 		this.resume = resume;
 	}
 
-	public Calendar getDateStart() {
-		return dateStart;
+	public LocalDateTime getDateStart() {
+		return dateOpen;
 	}
 
-	public void setDateStart(long date) {
+	public void setDateStart(LocalDateTime date) {
 		
-	    dateStart.setTimeInMillis(date * 1000);
+	    dateOpen = date;
 		
 	}
 
-	public Calendar getDateStop() {
-		return dateStop;
+	public LocalDateTime getDateStop() {
+		return dateClose;
 	}
 
-	public void setDateStop(long date) {
-		
-		dateStop.setTimeInMillis(date * 1000);
-		
-		
+	public void setDateStop(LocalDateTime date) {
+		dateClose = date;	
 	}
 	
 	public String toString() {
 		
-		return "id : " + id + " //name : " + nom + " //resume : " + resume + " //dateStart : " + dateStart + " //dateStop : " + dateStop;
+		return "id : " + id + " //name : " + nom + " //resume : " + resume + " //dateStart : " + dateOpen + " //dateStop : " + dateClose;
 	}
 	
 	

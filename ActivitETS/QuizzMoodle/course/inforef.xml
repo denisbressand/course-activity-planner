@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inforef>
+  <groupref>
+    <group>
+      <id>4194</id>
+    </group>
+  </groupref>
+  <roleref>
+    <role>
+      <id>5</id>
+    </role>
+  </roleref>
+  <question_categoryref>
+    <question_category>
+      <id>8272</id>
+    </question_category>
+    <question_category>
+      <id>8274</id>
+    </question_category>
+    <question_category>
+      <id>8276</id>
+    </question_category>
+    <question_category>
+      <id>8402</id>
+    </question_category>
+    <question_category>
+      <id>8403</id>
+    </question_category>
+    <question_category>
+      <id>14045</id>
+    </question_category>
+    <question_category>
+      <id>14046</id>
+    </question_category>
+  </question_categoryref>
+</inforef>
